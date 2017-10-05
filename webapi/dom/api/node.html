@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    tr, td {
+      border: 1px solid #ddd;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body class="single single-post">
+<div id="result"></div>
+
+<script>
+  window.onload = test
+
+function test () {
+  var arr = [
+    ['', 'example', 'nodeType', 'nodeName', 'nodeValue', 'tagName'],
+    get('ELEMENT_NODE', 'document.body', document.body),
+    get('ATTRIBUTE_NODE ', "document.body.getAttributeNode('class')", document.body.getAttributeNode('class')),
+    get('TEXT_NODE', "document.createTextNode('hello')", document.createTextNode('hello')),
+    n4(),
+    n7(),
+    get('COMMENT_NODE', "document.createComment('comment')", document.createComment('comment')),
+    get('DOCUMENT_NODE', 'document', document),
+    n10(),
+    get('DOCUMENT_FRAGMENT_NODE', 'document.createDocumentFragment()', document.createDocumentFragment())
+  ];
+
+  var rows = []
+  for (var i = 0; i < arr.length; i++) {
+    var x = arr[i]
+    var cells = []
+    for (var j = 0; j < 6; j++) {
+      cells.push('<td>' + x[j] + '</td>')
+    }
+    rows.push('<tr>' + cells.join('') + '</tr>')
+  }
+
+  document.getElementById('result').innerHTML = '<table>' + rows.join('') + '</table>'
+}
+
+function get (description, example, node) {
+  return [
+    description,
+    example,
+    node.nodeType,
+    node.nodeName,
+    node.nodeValue,
+    node.tagName
+  ]
+}
+
+function n4() {
+  var name = 'CDATA_SECTION_NODE'
+  if (typeof DOMParser === 'function') {
+    var doc = new DOMParser().parseFromString('', "application/xml")
+    var node = doc.createCDATASection('raw')
+    return get(name, "XMLDocument.createCDATASection('raw')", node)
+  } else {
+    console.error('DOMParser is not supported.')
+    return [name, '', 4, '', '', '', '']
+  }
+}
+
+function n7() {
+  var name = 'PROCESSING_INSTRUCTION_NODE'
+  try {
+    var node = document.createProcessingInstruction('php', 'echo;')
+    return get(name, "document.createProcessingInstruction('php', 'echo;')", node)
+  } catch (err) {
+    console.error(err)
+    return [name, '', 7, '', '', '', '']
+  }
+}
+
+function n10() {
+  var name = 'DOCUMENT_TYPE_NODE'
+  if (document.doctype) {
+    return get(name, 'document.doctype', document.doctype)
+  } else {
+    console.error('document.doctype is null.')
+    return [name, '',  10, '', '', '', '']
+  }
+}
+</script>
+</body>
+</html>

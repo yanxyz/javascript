@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document API</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    table {
+      margin-top: 1em;
+    }
+  </style>
+</head>
+<body>
+  <details data-mdn="Document.body">
+    <summary>
+      <code>Element? body</code>
+    </summary>
+    <p>用作 getter 返回 body 或 frameset。 用作 setter 则是替换。</p>
+  </details>
+
+  <details data-mdn="Document.head">
+    <summary>
+      <code>Element? head</code>
+    </summary>
+    <p>IE9+</p>
+  </details>
+
+  <details data-mdn="Document.documentElement">
+    <summary>
+      <code>Element? documentElement</code>
+    </summary>
+    <p>获取 root element</p>
+  </details>
+
+  <details data-mdn="Document.activeElement">
+    <summary>
+      <code>Element? activeElement</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.defaultView">
+    <summary>
+      <code>Window? defaultView</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.doctype">
+    <summary>
+      <code>DocumentType? doctype</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.embeds">
+    <summary>
+      <code>HTMLCollection embeds</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.forms">
+    <summary>
+      <code>HTMLCollection forms</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.links">
+    <summary>
+      <code>HTMLCollection links</code>
+    </summary>
+    <p>返回全部 area 和 a[href]</p>
+  </details>
+
+  <details data-mdn="Document.images">
+    <summary>
+      <code>HTMLCollection images</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.scripts">
+    <summary>
+      <code>HTMLCollection scripts</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.styleSheets">
+    <summary>
+      <code>StyleSheetList styleSheets</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.createRange">
+    <summary>
+      <code>Range createRange()</code>
+    </summary>
+  </details>
+
+  <script src="script.js"></script>
+
+  <script>
+    var keys = [
+      'URL', 'documentURI', 'origin', 'domain',
+      'compatMode',
+      'characterSet', 'charset', 'inputEncoding',
+      'contentType',
+      'title'
+    ]
+
+    var table = ['<table>']
+    var mdn = 'https://developer.mozilla.org/en-US/docs/Web/API/Document/'
+    for (var i = 0; i < keys.length; i++) {
+      var name = keys[i]
+      table.push(
+        '<tr>',
+        '<td><a href="' + mdn + name + '">' + name + '</a></td>',
+        '<td>' + document[name] + '</td>',
+        '</tr>'
+      )
+    }
+    table.push('</table>')
+
+    document.body.insertAdjacentHTML('beforeEnd', table.join('\n'))
+  </script>
+
+</body>
+</html>

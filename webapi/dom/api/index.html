@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <ul>
+    <li>
+      <a href="https://dom.spec.whatwg.org/">DOM Living Standard</a>
+    </li>
+  </ul>
+
+  <section>
+    <select id="select">
+      <option value="all">all</option>
+      <option value="traversing">traversing</option>
+      <option value="query">query</option>
+      <option value="create">create</option>
+      <option value="insert">insert</option>
+      <option value="remove">remove</option>
+      <option value="clone">clone</option>
+      <option value="replace">replace</option>
+    </select>
+  </section>
+
+  <h2>ParentNode</h2>
+
+  <p>Document, DocumentFragment, Element 实现了这个接口。</p>
+
+  <details data-mdn="ParentNode.children" class="traversing">
+    <summary>
+      <code>HTMLCollection children</code>
+    </summary>
+  </details>
+
+  <details data-mdn="ParentNode.firstElementChild" class="traversing">
+    <summary>
+      <code>Element? firstElementChild</code>
+    </summary>
+  </details>
+
+  <details data-mdn="ParentNode.lastElementChild" class="traversing">
+    <summary>
+      <code>Element? lastElementChild</code>
+    </summary>
+  </details>
+
+  <details data-mdn="ParentNode.childElementCount">
+    <summary>
+      <code>unsigned long childElementCount</code>
+    </summary>
+    <p>IE9+ 支持，不过只有 Element 支持，Document 和 DocumentFragment 不支持</p>
+  </details>
+
+  <details data-mdn="ParentNode.prepend" class="insert">
+    <summary>
+      <code>void prepend((Node or DOMString)... nodes)</code>
+    </summary>
+    <p>DOMString 将创建为 TextNode 节点，这跟 innerHTML 不一样，不用转义。 </p>
+    <p>IE, Edge 不支持。
+      <a href="http://caniuse.com/#feat=dom-manip-convenience">Can I Use</a>
+    </p>
+  </details>
+
+  <details data-mdn="ParentNode.append" class="insert">
+    <summary>
+      <code>void append((Node or DOMString)... nodes)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="ParentNode.querySelector" class="query">
+    <summary>
+      <code>Element? querySelector(DOMString selectors)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="ParentNode.querySelectorAll" class="query">
+    <summary>
+      <code>NodeList querySelectorAll(DOMString selectors)</code>
+    </summary>
+    <p>返回 static collection</p>
+  </details>
+
+  <!-- /ParentNode -->
+
+  <h2>ChildNode</h2>
+
+  <p>Element, DocumentType, DocumentFragment 实现了这个接口。</p>
+
+  <details data-mdn="ChildNode.before" class="insert">
+    <summary>
+      <code>void before((Node or DOMString)... nodes)</code>
+    </summary>
+    <p>IE, Edge 不支持。</p>
+  </details>
+
+  <details data-mdn="ChildNode.after" class="insert">
+    <summary>
+      <code>void after((Node or DOMString)... nodes)</code>
+    </summary>
+    <p>IE, Edge 不支持。</p>
+  </details>
+
+  <details data-mdn="ChildNode.replaceWith" class="replace">
+    <summary>
+      <code>void replaceWith((Node or DOMString)... nodes)</code>
+    </summary>
+    <p>IE, Edge 不支持。</p>
+  </details>
+
+  <details data-mdn="ChildNode.remove" class="remove">
+    <summary>
+      <code>void remove((Node or DOMString)... nodes)</code>
+    </summary>
+    <p>IE不支持。</p>
+  </details>
+
+  <p>NonDocumentTypeChildNode，即 Element 和 CharacterData </p>
+
+  <details data-mdn="NonDocumentTypeChildNode.previousElementSibling" class="traversing">
+    <summary>
+      <code>Element? previousElementSibling</code>
+    </summary>
+  </details>
+
+  <details data-mdn="NonDocumentTypeChildNode.nextElementSibling" class="traversing">
+    <summary>
+      <code>Element? nextElementSibling</code>
+    </summary>
+  </details>
+
+  <!-- /ChildNode -->
+
+  <h2>Node</h2>
+
+  <details data-mdn="Node.parentNode" class="traversing">
+    <summary>
+      <code>Node? parentNode</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.parentElement" class="traversing">
+    <summary>
+      <code>Element? parentElement</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.hasChildNodes">
+    <summary>
+      <code>boolean hasChildNodes()</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.childNodes" class="traversing">
+    <summary>
+      <code>NodeList childNodes</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.firstChild" class="traversing">
+    <summary>
+      <code>Node? firstChild</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.lastChild" class="traversing">
+    <summary>
+      <code>Node? lastChild</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.previousSibling" class="traversing">
+    <summary>
+      <code>Node? previousSibling</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.nextSibling" class="traversing">
+    <summary>
+      <code>Node? nextSibling</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.textContent">
+    <summary>
+      <code>DOMString? textContent</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.innerText">
+    <summary>
+      <code>DOMString? innerText</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.cloneNode" class="clone">
+    <summary>
+      <code>Node cloneNode(optional boolean deep = false)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.contains">
+    <summary>
+      <code>boolean contains(Node? other)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.insertBefore" class="insert">
+    <summary>
+      <code>Node insertBefore(Node node, Node? child)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.appendChild" class="insert">
+    <summary>
+      <code>Node appendChild(Node node)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Node.replaceChild" class="replace">
+    <summary>
+      <code>Node replaceChild(Node node, Node child)</code>
+    </summary>
+    <p>replaceChild(newChild, oldChild) => oldChild，跟 insertBefore 类似。</p>
+  </details>
+
+  <details data-mdn="Node.removeChild" class="remove">
+    <summary>
+      <code>Node removeChild(Node child)</code>
+    </summary>
+  </details>
+
+  <p>
+    <a href="node.html">more...</a>
+  </p>
+
+  <!-- /Node -->
+
+  <h2>Document</h2>
+
+  <details data-mdn="Document.getElementsByTagName" class="query">
+    <summary>
+      <code>HTMLCollection getElementsByTagName(DOMString qualifiedName)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.getElementsByClassName" class="query">
+    <summary>
+      <code>HTMLCollection getElementsByClassName(DOMString classNames)</code>
+    </summary>
+    <p>多个 classNames 用空格隔开，表示同时具有，相当于 CSS selector
+      <code>.A.B</code>
+    </p>
+    <p>IE9+</p>
+  </details>
+
+  <details data-mdn="Document.getElementsByName" class="query">
+    <summary>
+      <code>HTMLCollection getElementsByName(DOMString name)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.getElementById" class="query">
+    <summary>
+      <code>Element? getElementById(DOMString elementId)</code>
+    </summary>
+    <p>Document, DocumentFragment, Element 有此方法。</p>
+  </details>
+
+  <details data-mdn="Document.createElement" class="create">
+    <summary>
+      <code>Element createElement(DOMString localName, optional ElementCreationOptions options)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.createDocumentFragment" class="create">
+    <summary>
+      <code>DocumentFragment createDocumentFragment()</code>
+    </summary>
+    <p>
+      <a href="" data-mdn="DocumentFragment">DocumentFragment</a>
+    </p>
+  </details>
+
+  <details data-mdn="Document.createTextNode" class="create">
+    <summary>
+      <code>Text createTextNode(DOMString data)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.createComment" class="create">
+    <summary>
+      <code>Comment createComment(DOMString data)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Document.createNodeIterator">
+    <summary>
+      <code>NodeIterator createNodeIterator(Node root, bitmask whatToShow, NodeFilter filter)</code>
+    </summary>
+    <p>IE9+</p>
+  </details>
+
+  <details data-mdn="Document.createTreeWalker">
+    <summary>
+      <code>TreeWalker createTreeWalker(Node root, bitmask whatToShow, NodeFilter filter)</code>
+    </summary>
+    <p>IE9+</p>
+  </details>
+
+  <p>
+    <a href="document.html">more...</a>
+  </p>
+
+  <!-- /Document -->
+
+  <h2>Element</h2>
+
+  <details data-mdn="Element.closest" class="traversing">
+    <summary>
+      <code>Element? closest(DOMString selectors)</code>
+    </summary>
+    <p>IE 不支持</p>
+  </details>
+
+  <details data-mdn="Element.matches">
+    <summary>
+      <code>boolean matches(DOMString selectors)</code>
+    </summary>
+    <p>IE9-11 为 msMatchesSelector</p>
+  </details>
+
+  <details data-mdn="Element.insertAdjacentElement" class="insert">
+    <summary>
+      <code>Element? insertAdjacentElement(DOMString where, Element element)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Element.insertAdjacentText" class="insert">
+    <summary>
+      <code>void insertAdjacentText(DOMString where, DOMString data)</code>
+    </summary>
+  </details>
+
+  <p>
+    <a href="https://w3c.github.io/DOM-Parsing/#dom-element-innerhtml">DOM Parsing and Serialization</a>
+  </p>
+
+  <details data-mdn="Element.innerHTML">
+    <summary>
+      <code>DOMString innerHTML</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Element.outerHTML">
+    <summary>
+      <code>DOMString outerHTML</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Element.insertAdjacentHTML" class="insert">
+    <summary>
+      <code>void insertAdjacentHTML(DOMString position, DOMString text)</code>
+    </summary>
+  </details>
+
+  <h4>Attributes</h4>
+
+  <details data-mdn="Element.hasAttributes" class="attributes">
+    <summary>
+      <code>boolean hasAttributes()</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Element.attributes" class="attributes">
+    <summary>
+      <code>attribute NamedNodeMap attributes</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Element.getAttributeNames" class="attributes">
+    <summary>
+      <code>sequence&lt;DOMString&gt; getAttributeNames()</code>
+    </summary>
+    <p>返回一个数组。</p>
+  </details>
+
+  <details data-mdn="Element.getAttribute" class="attributes">
+    <summary>
+      <code>DOMString? getAttribute(DOMString qualifiedName)</code>
+    </summary>
+    <p>如果 attribute 不存在则返回 null，有些旧浏览器可能返回 ""。</p>
+    <p>对于 boolean attribute, 返回 HTML 中的值。这是跟 property 的一个区别。</p>
+  </details>
+
+  <details data-mdn="Element.setAttribute" class="attributes">
+    <summary>
+      <code>void setAttribute(DOMString qualifiedName, DOMString value)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Element.removeAttribute" class="attributes">
+    <summary>
+      <code>void removeAttribute(DOMString qualifiedName)</code>
+    </summary>
+  </details>
+
+  <details data-mdn="Element.hasAttribute" class="attributes">
+    <summary>
+      <code>boolean hasAttribute(DOMString qualifiedName)</code>
+    </summary>
+  </details>
+
+  <!-- /Element -->
+
+  <h2>HTMLElement</h2>
+
+  <details data-mdn="HTMLElement.outerText">
+    <summary>
+      <code>Text outerText</code>
+    </summary>
+    <p>非标准方法，Firefox 不支持。用作 getter 时同 innerText; 用作 setter 时替换当前 node。</p>
+  </details>
+
+  <!-- /HTMLElement -->
+
+  <script src="script.js"></script>
+</body>
+</html>

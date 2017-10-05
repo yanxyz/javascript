@@ -1,0 +1,45 @@
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px 10px;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: #00C;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+details {
+  margin: 0 1em;
+}
+
+details[open] {
+  background: #efefef;
+}
+
+summary {
+  outline: none;
+}
+
+summary a {
+  color: #222;
+}
+
+summary code {
+  font-size: 1rem;
+}
+
+summary b {
+  color: orangered;
+}
+
+.hide {
+  display: none;
+}
+
+

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="api.css">
+</head>
+<body>
+  <h1>XMLHttpRequest</h1>
+  <ul>
+    <li>
+      <a href="https://xhr.spec.whatwg.org/">XMLHttpRequest Living Standard</a>
+    </li>
+  </ul>
+
+  <details>
+    <summary>
+      <code>readyState</code>
+    </summary>
+    <p>数字值 0-4，对应有常量值。IE9+ 支持常量。</p>
+  </details>
+
+  <h2>
+    <span>Request</span>
+  </h2>
+
+  <details>
+    <summary>
+      <code>open(method, url, async = true, username = null, password = null)</code>
+    </summary>
+    <p>async 默认为 true, 表示 asynchronous request；为 false 时，表示 synchronous request。</p>
+    <p>对于 synchronous request，在 main thread 中会在 console 给一条警告，建议只在 Worker 中使用。此外还有一些限制，见 timeout, responseType </p>
+  </details>
+
+  <details>
+    <summary>
+      <code>setRequestHeader()</code>
+    </summary>
+  </details>
+
+  <details>
+    <summary>
+      <code>timeout</code>
+    </summary>
+    <p>超时单位为 ms, 默认为 0，即没有超时。</p>
+    <p>IE8+ 支持, IE 只能在 open() 和 send() 之间设置 timeout。</p>
+  </details>
+
+  <details>
+    <summary>
+      <code>withCredentials</code>
+    </summary>
+    <p>用于 CORS</p>
+    <p>IE10+ 支持。</p>
+  </details>
+
+  <details>
+    <summary>
+      <code>upload</code>
+    </summary>
+    <p>IE10+ 支持。</p>
+  </details>
+
+  <details>
+    <summary>
+      <code>send(body = null)</code>
+    </summary>
+    <p>若 request method 是 GET 或 HEAD，则忽略 body。</p>
+    <p></p>
+  </details>
+
+  <details>
+    <summary>
+      <code>abort()</code>
+    </summary>
+    <p></p>
+  </details>
+
+  <h2>
+    <span>Response</span>
+  </h2>
+
+  <details>
+    <summary>
+      <code>responseURL</code>
+    </summary>
+  </details>
+
+  <details>
+    <summary>
+      <code>status</code>
+    </summary>
+    <p>response 状态码。status 可能为 0: readyState 为 OPENED; timeout</p>
+    <p>readyState 为 OPENED 时，IE&lt;10 访问 status 会报错。</p>
+  </details>
+
+  <details>
+    <summary>
+      <code>statusText</code>
+    </summary>
+    <p>response 状态消息。</p>
+  </details>
+
+  <details>
+    <summary>
+      <code>getResponseHeader(name)</code>
+    </summary>
+    <p>有些 headers 不能得到，比如 Set-Cookie 等。在跨域时可以获取的 headers 更少。</p>
+  </details>
+
+  <details>
+    <summary>
+      <code>getAllResponseHeaders()</code>
+    </summary>
+    <p>获取全部 response headers, 一行一条 header, 换行符为 CRLF。</p>
+    <p>有些 headers 不能得到，特别是跨域时。</p>
+  </details>
+
+  <h3>Response body</h3>
+
+  <details>
+    <summary>
+      <code>overrideMimeType(mime)</code>
+    </summary>
+    <p>如果 readyState 为 LOADING, DONE 则报错。</p>
+    <p>IE11 支持。</p>
+  </details>
+
+  <details>
+    <summary>
+      <code>responseType</code>
+    </summary>
+    <p>默认值为 ''。</p>
+    <p>若 Global object 不是 window（比如 worker）则忽略 'document'。</p>
+    <p>如果 readyState 为 LOADING, DONE 则报错。</p>
+    <p>对于 synchronous request，若 Global object 是 window 则报错。</p>
+    <p>IE10+ 支持，但不支持 'json'</p>
+  </details>
+
+  <details>
+    <summary>
+      <code>response</code>
+    </summary>
+    <p></p>
+    <p>IE10+ 支持</p>
+  </details>
+
+  <details>
+    <summary>
+      <code>responseText</code>
+    </summary>
+    <p>若 responseType 不为 '' 或 'text' 则抛出错误。</p>
+    <p>readyState 不为 LOADING, DONE 时返回 ''。</p>
+  </details>
+
+  <details>
+    <summary>
+      <code>responseXML</code>
+    </summary>
+    <p>responseType 不为 '' 或 'document' 则抛出错误。</p>
+    <p>readyState 不为 DONE 时返回 null。</p>
+  </details>
+
+  <h2>
+    <span>Event handlers</span>
+  </h2>
+
+  <p>
+    <a href="https://xhr.spec.whatwg.org/#events">Events summary</a>
+  </p>
+
+  <details>
+    <summary>
+      <code>onreadystatechange</code>
+    </summary>
+    <p>open(), send() 派发 readystatechange event；abort() 不会派发。</p>
+  </details>
+
+  <h3>ProgressEvent</h3>
+
+  <ul>
+    <li>下面 7 个 events 为 ProgressEvent，XMLHttpRequest 和 XMLHttpRequestUpload(XMLHttpRequest.upload) 可以使用。</li>
+    <li>onload IE9+, ontimeout IE8+, 其它 IE10+。 </li>
+  </ul>
+
+  <p></p>
+
+  <details class="progressevent">
+    <summary>
+      <code>onloadstart</code>
+    </summary>
+    <p></p>
+  </details>
+
+  <details class="progressevent">
+    <summary>
+      <code>onprogress</code>
+    </summary>
+    <p></p>
+  </details>
+
+  <details class="progressevent">
+    <summary>
+      <code>onabort</code>
+    </summary>
+    <p></p>
+  </details>
+
+  <details class="progressevent">
+    <summary>
+      <code>onerror</code>
+    </summary>
+    <p>网络错误等，跟 server 4xx, 5xx 等区分开。</p>
+    <p></p>
+  </details>
+
+  <details class="progressevent">
+    <summary>
+      <code>onload</code>
+    </summary>
+    <p></p>
+  </details>
+
+  <details class="progressevent">
+    <summary>
+      <code>ontimeout</code>
+    </summary>
+    <p>由 timeout 指定超时。</p>
+    <p>IE8 ontimeout 不能获取 event 属性，仅仅是通知而已；</p>
+  </details>
+
+  <details class="progressevent">
+    <summary>
+      <code>onloadend</code>
+    </summary>
+    <p>loadend 表示请求结束，请求或成功或失败。</p>
+    <p></p>
+  </details>
+
+  <script src="api.js"></script>
+</body>
+</html>
