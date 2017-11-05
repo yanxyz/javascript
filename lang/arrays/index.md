@@ -49,8 +49,9 @@ a['a'] = 'a'
 console.log(a)
 ```
 
-## 继续
+## 目录
 
-- [遍历数组](loop.md)
-- [Array-like object](array-like.md)
+- [遍历数组](iteration.md)
 - [增删数组元素](push.md)
+- [Array-like objects](array-like.md)
+- [稀疏数组](sparse.md)

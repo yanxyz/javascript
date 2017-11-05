@@ -1,20 +1,29 @@
 # Property Descriptors
 
-data property descriptors
+## data property descriptors
+
+```js
+var obj = {}
+Object.defineProperty(obj, 'a', { value: 1 })
+Object.getOwnPropertyDescriptor(obj, 'a')
+// {value: 1, writable: false, enumerable: false, configurable: false}
+```
 
 - value
-- writable，默认值为 false，不能修改 value
-- enumerable，默认值为 false
-- configurable ，默认值为 false，这个属性不能 delete，不能修改它的 descriptors
+- writable，默认值为 false，这时属性为只读
+- enumerable，默认值为 false，[遍历对象属性](enumeration.md)
+- configurable ，默认值为 false，这时
+  - 不能修改属性的 descriptors，再次调用 `Object.defineProperty()` 报错
+  - 不能被删除（[delete operator](../operators/delete.md))，在严格模式下报错
 
-accessor property descriptors
+## accessor property descriptors
 
 - get，function
 - set, function
 - enumerable
 - configurable
 
-相关 methods
+## 相关 methods
 
 - Object.defineProperty()
 - Object.defineProperties()
@@ -44,3 +53,7 @@ console.log(Object.getOwnPropertyDescriptor(Math, 'PI'))
 - Object.isSealed()
 - Object.freeze()，不能添加/删除/修改属性，设置已有属性 configurable: false，writable: false
 - Object.isFrozen()
+
+## 示例
+
+- <https://github.com/nodejs/node/blob/master/lib/internal/errors.js#L27>

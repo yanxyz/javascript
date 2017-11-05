@@ -1,4 +1,4 @@
-# JavaScript this
+# this
 
 this 是关键字，不是变量，不能给 this 赋值。
 

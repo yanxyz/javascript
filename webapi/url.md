@@ -23,3 +23,6 @@ decodeURI
 encodeURI
 decodeURIComponent
 encodeURIComponent()
+
+## 资料
+

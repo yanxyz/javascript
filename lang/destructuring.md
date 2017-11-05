@@ -1,4 +1,4 @@
-# JavaScript Destructuring
+# Destructuring
 
 解构（destructuring）以 patterns 的方式从 objects 和 arrays 中提取数据。解构赋值
 

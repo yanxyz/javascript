@@ -1,4 +1,4 @@
-# JavaScript 模块
+# 模块
 
 模块（modules）与脚本（scripts）的区别
 

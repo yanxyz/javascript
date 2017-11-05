@@ -1,8 +1,32 @@
-# JavaScript 遍历数组
+# 遍历数组
 
-## for 等循环语句
+## for 循环语句
 
-for 虽然不如其它方法 cool，不过效率最高，可以使用 break, continue 等。
+for 虽然不如其它方法 cool，不过速度最快，可以使用 break, continue 等。
+
+forwards，从前向后
+
+```js
+for (var i = 0; i < arr.length; ++i) {
+  var item = arr[i]
+}
+
+// 每次循环不访问 length, 速度更快一些
+for (var i = 0, len = arr.length; i < len; ++i) {
+  var item = arr[i]
+}
+```
+
+backwards，从后向前
+
+```js
+// 如果是 --i 会怎样？
+for (var i = arr.length; i-- > 0;) {
+  var item = arr[i]
+}
+```
+
+[javascript - Why is iterating through an array backwards faster then forwards - Stack Overflow](https://stackoverflow.com/questions/8689573/)
 
 ## iterable
 
@@ -14,7 +38,7 @@ for 虽然不如其它方法 cool，不过效率最高，可以使用 break, con
 ```js
 var arr = ['a', 'b', 'c']
 
-// for...of 中 arrray 默认使用 .values()
+// for...of 中 array 默认使用 .values()
 for (const item of arr) {
   console.log(item)
 }

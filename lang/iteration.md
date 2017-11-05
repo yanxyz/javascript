@@ -1,4 +1,4 @@
-# JavaScript iterables 和 iterators
+# iterables 和 iterators
 
 iterable protocol 和 iterator protocol
 

@@ -4,7 +4,8 @@
 
 - [基础](basics.md)
 - [变量](variables/index.md)
-- [Data Types](data-types.md)
+- [语句](statements/index.md)
+- [Data Types](data-types/index.md)
 - [数字](numbers/index.md)
 - [字符串](strings/index.md)
 - [模板字面量](template-literals.md)
@@ -13,24 +14,15 @@
 - [函数](functions/index.md)
 - [箭头函数](arrow-functions.md)
 - [对象](objects/index.md)
-- [Errors](errors.md)
+- [Errors](errors/index.md)
 - [Classes](classes/index.md)
 - [模块](modules.md)
 - [严格模式](strict-mode.md)
 
 表达式
 
-- [操作符](expressions/operators.md)
-- [+](plus.md)
-- [typeof](typeof.md)
-- [delete](delete.md)
+- [操作符](operators/index.md)
 - [Destructuring](destructuring.md)
-- [spread 和 rest 操作符](spread-rest.md)
-
-语句
-
-- [if](if.md)
-- [switch](switch.md)
 
 标准库
 

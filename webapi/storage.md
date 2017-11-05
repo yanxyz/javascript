@@ -18,7 +18,10 @@ Storage 只能保存 strings，写入对象之前先序列化它。
 ### Incognito
 
 
-
 ## StorageEvent
 
 
+
+## Persistent Storage
+
+[Persistent Storage - Google Developers](https://developers.google.com/web/updates/2016/06/persistent-storage)

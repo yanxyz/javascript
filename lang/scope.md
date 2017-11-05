@@ -1,6 +1,6 @@
-# JavaScript scope
+# 作用域
 
-JavaScript scope 跟 **Execution Context** 相关。
+JavaScript 作用域（scope） 跟 **Execution Context** 相关。
 
 ## Execution Context
 
@@ -39,8 +39,6 @@ typeof bar() // ?
   }
 }(0));
 ```
-
-![](/uploads/javascript/ec.gif)
 
 ## 资料
 

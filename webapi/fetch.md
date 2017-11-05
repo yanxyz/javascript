@@ -2,7 +2,6 @@
 
 ## API
 
-
 - [Fetch Standard](https://fetch.spec.whatwg.org/)
 
 ## 兼容性

@@ -4,11 +4,6 @@ _site
 Gemfile
 Gemfile.lock
 
-default.css
+_scripts
 .vscode
 *.sublime-*
-
-/_scripts/
-node_modules
-yarn.lock
-package-lock.json

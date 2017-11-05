@@ -2,52 +2,17 @@
 toc: true
 ---
 
-# JavaScript 数据类型
-
-JavaScript 有 6 个原始类型和 1 个引用类型。
-
-[MDN Data types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
-
-| 类型      | 真值             | 假值                     | typeof      |
-| --------- | ---------------- | ------------------------ | ----------- |
-| Undefined |                  | undefined                | "undefined" |
-| Null      |                  | null                     | "object"    |
-| Boolean   | true             | false                    | "boolean"   |
-| Number    | 例如 1，Infinity | 0, +0, -0, NaN           | "number"    |
-| String    | 例如 "hello", 'hi' | 空字符串 "" 和 '', length 为 0 | "string" |
-| Symbol    | 都是真值。例如 Symbol() |                   | "symbol"    |
-
-Undefined 和 Null 类型都是只有一个值。变量如果没有初始化，它的值是 undefined。
-
-## 判断类型
-
-用操作符 typeof 判断数据类型。原始类型的结果见上表。其中 null 比较特殊，返回的是 "object"。
-
-```js
-function isNull (val) {
-  return val === null
-}
-```
-
-对于引用类型，函数和生成器返回 "function", 其它都是返回 "object"，怎么区分这些对象？以数组为例：
-
-```js
-Array.isArray = Array.isArray || function (obj) {
-  return Object.prototype.toString.call(obj) === '[object Array]'
-}
-```
-
-## 类型转换
+# 类型转换
 
 JavaScript 是弱类型语言，不用声明变量的类型；也是动态语言，在运行时根据需要转换类型。例如：
 
 ```js
 var a
-// 自动将 a 转为 false
+// a 是 undefined, 自动转为 false
 if (a) {
-  console.log('Hi')
+  console.log('Well')
 } else {
-  console.log('Ooh')
+  console.log('Oops')
 }
 ```
 
@@ -57,7 +22,7 @@ if (a) {
 
 由 JavaScript 引擎自动转换类型是隐式类型转换，下面是转换规则。如果是相同类型直接返回，不进行类型转化。
 
-### ToBoolean(argument)
+## ToBoolean
 
 [`ToNumber(argument)`](https://tc39.github.io/ecma262/#sec-toboolean) 将 argument 转为 Boolean 类型：
 
@@ -77,43 +42,9 @@ if (a) {
 - 空对象都是转为 true，例如：空数组 `[]`, 空对象 `{}`。
 - 包装对象都是转为 true，不管它对应的原始值是不是假值，例如：`new Boolean(false)`, `new Number(0)`。
 
-Boolean，Number, String 函数，以 new 调用时（此时它们是构造函数）生成对应的包装对象。
+另外注意 [Wrapper objects](wrapper.md)
 
-```js
-var bool = new Boolean()
-typeof bool // "object"
-
-// if 语句期望一个 Boolean 值，JavaScript 引擎在这里自动转换类型
-// Boolean(bool) 返回 true
-if (bool) console.log('Hi') // "Hi",
-
-// 因为 new Boolean() 的参数是 undefined, 所以 bool 对应的原始值是 false
-// 二元运算符 +， bool 先转为原始值 false, 因为是和数字相加，所以再转为数字 0。
-bool + 1 // 1
-
-// 和字符串相加，则转为字符串。
-"I'm " + bool // "I'm false"
-```
-
-这也是为什么它们作为原始值却可以如对象那样拥有属性和方法，JavaScript 引擎在背后自动装箱卸箱。实际应用中应当避免这种用法。
-
-当直接调用它们时（此时它们是普通函数），是显式转换类型。
-
-```js
-var bool = Boolean()
-typeof bool // "boolean"
-if (bool) console.log('Hi') // 不打印
-```
-
-Symbol 不能以 new 调用，不能直接生成它的包装对象，使用 Object() 可以将它转为它的包装对象。
-
-undefined, null 没有包装对象, 它们没有属性和方法：
-
-```js
-null.toString() // TypeError
-```
-
-### ToNumber
+## ToNumber
 
 [`ToNumber(argument)`](https://tc39.github.io/ecma262/#sec-tonumber) 将 argument 转为 Number 类型：
 
@@ -123,49 +54,10 @@ null.toString() // TypeError
 | Null          | 返回 +0。
 | Boolean       | 返回 1 若 argument 是 true；返回 +0 若 argument 是 false。
 | Number        | 返回 argument（不进行转换）。
-| String        | 转换规则见下。
+| String        | [见这](../numbers/conversion.md)。
 | Symbol        | 抛出一个 TypeError 异常。
 | Object        | 1. primValue = [`ToPrimitive(argument, hint Number)`](#toprimitive)，<br> 2. `ToNumber(primValue)`。
 
-`Number()` 将 String 转为 Number，先删掉字符串头尾的空白，然后
-
-- 空字符串转为 0
-
-```js
-Number('') // 0
-```
-
-- 数字字符串（numberic string）转为数字，返回相应的数字。
-
-```js
-Number('123') // 123
-Number('Infinity') // Infinity
-Number('1e+2') // 100
-
-// 正负号
-Number('-123') // -123
-
-// 数字前缀
-Number('0b10') // 2
-Number('0o10') // 8
-Number('0xA') // 10
-
-// 十进制可以有多个前缀 0
-Number('010') // 10
-Number('0010') // 10
-
-// 浮点数
-Number('3.14') // 3.14
-Number('03.14') // 3.14
-```
-
-- 非数字字符串，返回 NaN
-
-```js
-Number('123abc') // NaN
-```
-
-全局函数 `parseInt()`, `parseFloat()` 也可以将字符串转为数字，它们的转换规则跟 `Number()` 很不同。详细见 [parseInt](numbers/parseInt.md)。
 
 ### ToPrimitive
 
@@ -201,7 +93,7 @@ Number([1, 2])       // ?
 Number(new Date(1))  // ?
 ```
 
-### ToString
+## ToString
 
 [`ToString(argument)`](https://tc39.github.io/ecma262/#sec-tostring) 将 `argument` 转为 String 类型：
 
@@ -222,7 +114,7 @@ Number 类型转为 String 类型：
 
 还可以用 Number 类的方法转为特定格式的字符串。如 toFixed(), toExponential(), toPrecision() 等。
 
-### ToObject
+## ToObject
 
 [`ToObject(argument)`](https://tc39.github.io/ecma262/#sec-toobject) 将 `argument` 转为 Object 类型：
 
@@ -237,12 +129,3 @@ Number 类型转为 String 类型：
 | Object        | 返回 argument（不进行转换）。
 
 `Object()` 跟 `ToObject` 有一点不一样，`Object()` 参数为 undefined 或 null 时，返回一个空对象。
-
-
-## 判断类型
-
-[typeof operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof)
-
-Array.isArray() 判断数组
-
-Object.prototype.toString

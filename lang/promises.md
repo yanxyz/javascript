@@ -51,6 +51,12 @@ function(resolve, reject) {}
 .then(null, onRejected)
 ```
 
+### Promise.prototype.finally
+
+- <https://developers.google.com/web/updates/2017/10/promise-finally>
+
+Async functions 用 `try...catch...finally`
+
 ### 静态方法
 
 `Promise.resolve()`
@@ -58,6 +64,8 @@ function(resolve, reject) {}
 `Promise.reject()`
 
 `Promise.all()`
+
+
 
 
 

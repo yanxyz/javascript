@@ -1,4 +1,4 @@
-# JavaScript 原型
+# 原型
 
 ## constructor
 

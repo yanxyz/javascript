@@ -1,4 +1,4 @@
-# JavaScript Symbols
+# Symbols
 
 Symbols 是 ES6 引入的原始类型。
 

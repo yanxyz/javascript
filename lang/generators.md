@@ -1,4 +1,4 @@
-# JavaScript 生成器
+# 生成器
 
 generator function
 

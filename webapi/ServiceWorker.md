@@ -1,5 +1,1 @@
----
-permalink: /webapi/serviceworker/
----
-
 # ServiceWorker

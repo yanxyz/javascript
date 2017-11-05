@@ -1,6 +1,6 @@
 # delete operator
 
-delete operator 删除对象属性（own configurable property）
+delete operator 用于删除对象属性，只可以删除 own configurable property
 
 ```js
 var o = { x: 1 }

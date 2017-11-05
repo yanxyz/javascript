@@ -1,4 +1,4 @@
-# JavaScript global
+# global
 
 global object
 

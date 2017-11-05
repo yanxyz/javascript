@@ -38,5 +38,7 @@ function f(x, ...y) {
 f('a', 'b', 'c')
 ```
 
+## 资料
+
 - <http://exploringjs.com/es6/ch_parameter-handling.html#sec_spread-operator>
 

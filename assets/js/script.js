@@ -1,4 +1,69 @@
 /**
+ * 根据 pathname 创建 crumbs
+ */
+function crumbs() {
+  const pathname = location.pathname
+  const indexPage = 'index.html'
+  const homeLink = document.getElementById('home-link')
+  const siteBaseUrl = homeLink.getAttribute('href')
+  if (pathname === siteBaseUrl) return
+
+  const parts = pathname.slice(siteBaseUrl.length).split('/')
+
+  // 删除末尾的 '/' 及 'index.html'
+  let arr
+  for (let i = parts.length; i-- > 0;) {
+    const p = parts[i]
+    if (!p || p === indexPage) continue
+    arr = parts.slice(0, i + 1)
+    break
+  }
+
+  const len = arr.length
+  if (!arr.length) return
+
+  const fragment = document.createDocumentFragment()
+  fragment.appendChild(homeLink)
+  createSeparator()
+  const n = len - 1
+  let href = siteBaseUrl
+  for (let i = 0; i < n; i++) {
+    const p = parts[i]
+    if (!p) continue // 跳过连续的 '/'
+    href += `${p}/`
+    create(p, href)
+  }
+  createLastItem(arr[n])
+  // 为了消除空白，重写 container contents
+  const container = document.getElementById('site-crumbs')
+  container.textContent = ''
+  container.appendChild(fragment)
+
+  function create(text, href) {
+    const a = document.createElement('a')
+    a.textContent = text
+    a.href = href
+    fragment.appendChild(a)
+    createSeparator()
+  }
+
+  function createSeparator() {
+    const span = document.createElement('span')
+    span.className = 'separator'
+    span.textContent = '/'
+    fragment.appendChild(span)
+  }
+
+  function createLastItem(text) {
+    const span = document.createElement('span')
+    span.textContent = text
+    fragment.appendChild(span)
+  }
+}
+
+crumbs()
+
+/**
  * 外部链接图标
  */
 
@@ -9,53 +74,35 @@ document.getElementById('site-main').querySelectorAll('a').forEach(a => {
 })
 
 /**
- * toc
+ * 标题锚点
  */
 
-function buildToc(params) {
-  const container = document.getElementById('toc')
-  if (!container) return
+function addAnchors() {
+  const reH = /^H[2-4]$/
+  Array.from(document.querySelector('.markdown-body').children).forEach(el => {
+    if (reH.test(el.tagName)) {
+      const id = el.id
+      if (!id || el.childElementCount) return
 
-  const article = document.getElementById('article')
-  const h1 = article.querySelector('h1')
-  article.insertBefore(container, h1 ? h1.nextSibling : article.firstChild)
-
-  const headings = Array.from(article.querySelectorAll('h2, h3'))
-  headings.forEach(h => {
-    const id = h.id
-    if (!id || h.childElementCount) return
-
-    h.innerHTML = `<a href="#${id}" class="anchor" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" width="14" height="14"><use xlink:href="#octicon-link"></use></svg></a>` + h.textContent
-  })
-
-  const list = []
-  let level
-  let nested = false
-  headings.forEach(h => {
-    const id = h.id
-    if (!id) return
-    const n = parseInt(h.tagName[1])
-    if (!level) level = n // 初始化
-    if (n > level) {
-      list.push('<ol>')
-      nested = true
-    } else if (n < level && nested) {
-      pushEnding()
-      nested = false
+      el.innerHTML = `<a href="#${id}" class="anchor" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" width="14" height="14"><use xlink:href="#octicon-link"></use></svg></a>` + el.textContent
     }
-    list.push(`<li><a href="#${id}">${h.textContent}</a>`)
-    level = n
   })
-  if (nested) pushEnding()
-
-  list.unshift('<ol>')
-  pushEnding()
-  container.insertAdjacentHTML('beforeEnd', list.join('\n'))
-  container.open = true
-
-  function pushEnding() {
-    list.push('</ol>')
-  }
 }
 
-buildToc()
+/**
+ * 快捷键
+ */
+
+document.addEventListener('keydown', function (event) {
+  if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) return
+
+  // 't' goto top
+  if (event.code === 'KeyT') {
+    document.documentElement.scrollTop = 0;
+  }
+
+  // 'h' go home
+  if (event.code === 'KeyH') {
+    document.getElementById('home-link').click()
+  }
+})

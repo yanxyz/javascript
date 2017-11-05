@@ -1,32 +1,9 @@
-## CSSOM
+# CSSOM
 
-[CSS Object Model (CSSOM) Specification](https://drafts.csswg.org/cssom/)
+- [style 操作](style.md)
+- [CSS methods](css.md)
+- [CSSOM View](view.md)
 
-### element.style
-
-```js
-element.style.display = 'none'
-```
-
-### document.styleSheets
-
-```js
-var sheets = document.styleSheets // StyleSheetList
-var sheet = sheets[0] // CSSStyleSheet
-var rules = sheet.cssRules // CSSRuleList
-var rule = sheet.cssRules[0] // CSSStyleRule, CSSMediaRule...
-var style = rule.style // CSSStyleDeclaration
-```
-
-
-### window.getComputedStyle()
-
-window.getComputedStyle() => CSSStyleDeclaration
-
-
-### `CSS.escape()`
-
-
-
-### `CSS.supports()`
-
+### scroll-behavior
+#
+Chrome 61
