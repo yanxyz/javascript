@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+
+<p>IE F12 查看</p>
+
+<script>
+// IE 不支持箭头函数，解析源码失败，try 不能捕获这个 SyntaxError
+try {
+  var noop = () => {}
+} catch (err) {
+  console.error(err)
+}
+console.log('arrow function')
+</script>
+
+<script>
+// IE 不支持下面 RegExp 语法，不过 try 可以捕获这个 SyntaxError
+try {
+  new RegExp(/ab+c/, 'g')
+} catch (err) {
+  console.error(err)
+}
+console.log('RegExp constructor')
+</script>
+
+</body>
+</html>

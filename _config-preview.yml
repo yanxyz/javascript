@@ -1,0 +1,8 @@
+github: [metadata]
+baseurl: '/javascript' # 与 github.io 一致
+# theme: jekyll-theme-primer # 使用默认主题 primer
+# description: ''
+
+exclude:
+  - '*.sublime-*'
+  - Gemfile*

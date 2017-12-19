@@ -1,0 +1,54 @@
+---
+---
+
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+.obsolete {
+  color: #999;
+}
+
+#site-header {
+  .container-lg {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+#site-crumbs {
+  .separator::before,
+  .separator::after {
+    content: ' '
+  }
+}
+
+#site-nav a {
+  margin-left: 8px;
+}
+
+.octicon-link-external {
+  fill: currentColor;
+  width: 10px;
+  height: 10px;
+  margin-right: 2px;
+  vertical-align: middle;
+}
+
+.highlight {
+  // code comments，中文斜体不方便阅读
+  .c, .c1 {
+    font-style: normal;
+  }
+}
+
+#site-footer {
+  font-size: 12px;
+  margin-top: auto;
+}

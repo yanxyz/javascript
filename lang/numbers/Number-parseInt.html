@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Number and parseInt - yanxyz</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    td {
+      border: 1px solid #666;
+      padding: 5px 10px;
+      white-space: pre;
+    }
+
+    td[colspan] {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .string {
+      color: #d14;
+    }
+
+    .number {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+
+<p><a href="/javascript/lang/numbers/conversion/">将其它类型转为 Number</a></p>
+
+<script>
+(function () {
+
+var table = ['<table>',
+'  <tr>',
+'    <td></td>',
+'    <td>Number()</td>',
+'    <td>parseInt()</td>',
+'  </tr>'
+]
+
+pushRow('没有参数', Number(), parseInt())
+
+pushRow('primitive types')
+pushRows([
+  undefined,
+  null,
+  true,
+  false
+])
+
+pushRow('参数是 Number')
+pushRows([
+  123,
+  -123,
+  NaN,
+  Infinity
+])
+pushRow('1e+2(科学计数法)', Number(1e+2), parseInt(1e+2))
+
+pushRow('参数是 string')
+pushRows([
+  '',
+  '     ',
+  '  123    ',
+  '  -123   ',
+  '  123abc ',
+  'undefined',
+  'null',
+  'true',
+  'false'
+])
+
+pushRow('参数是 numberic string')
+pushRows([
+  '123',
+  '-123',
+  'NaN',
+  'Infinity',
+  '1e+2'
+])
+
+pushRow('参数是 numberic string, 有数字前缀')
+pushRows([
+  '010',
+  '0o10',
+  '0b10',
+  '0x10',
+  '0xfg'
+])
+
+pushRow('多个前缀 0')
+pushRows([
+  '0010',
+  '00o10',
+  '00b10',
+  '00x10'
+])
+
+pushRow('参数是 numberic string，浮点数')
+pushRows([
+  '3.14',
+  '3.14.15'
+])
+
+table.push('</table>')
+
+document.body.insertAdjacentHTML('beforeEnd', table.join('\n'))
+
+function pushRows(items) {
+  for (var i = 0; i < items.length; i++) {
+    var x = items[i]
+    table.push('<tr>')
+    table.push(addClass(x) + quote(x) + '</td>')
+    table.push('<td>' + Number(x) + '</td>')
+    table.push('<td>' + parseInt(x) + '</td>')
+    table.push('</tr>')
+  }
+}
+
+function pushRow() {
+  if (arguments.length === 1) {
+    table.push('<tr>')
+    table.push('<td colspan="3">' + arguments[0] + '</td>')
+    table.push('</tr>')
+    return
+  }
+
+  if (arguments.length === 3) {
+    table.push('<tr>')
+    table.push('<td>' + arguments[0] + '</td>')
+    table.push('<td>' + arguments[1] + '</td>')
+    table.push('<td>' + arguments[2] + '</td>')
+    table.push('</tr>')
+  }
+}
+
+function addClass(x) {
+  return '<td class="' + (typeof x) + '">'
+}
+
+function quote(x) {
+  if (typeof x === 'string') return '"' + x + '"'
+  return x
+}
+
+})()
+</script>
+
+</body>
+</html>
